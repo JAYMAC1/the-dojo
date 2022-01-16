@@ -12,7 +12,7 @@ const Sidebar = () => {
           {/* avatar anf username here later */}
           <p>Hey user,</p>
         </div>
-        <nav className='Links'>
+        <nav className='links'>
           <ul>
             <li>
               <NavLink exact to='/'>
