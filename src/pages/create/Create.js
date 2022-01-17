@@ -1,7 +1,16 @@
-// sytles
 import { useState } from 'react'
+import Select from 'react-select'
+
+// sytles
 import './Create.css'
 
+// category options
+const categories = [
+  { value: 'development', label: 'Development' },
+  { value: 'design', label: 'Design' },
+  { value: 'sales', label: 'Sales' },
+  { value: 'marketing', label: 'Marketing' },
+]
 const Create = () => {
   // form fields
   const [name, setName] = useState('')
@@ -12,7 +21,7 @@ const Create = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(name, details, dueDate)
+    console.log(name, details, dueDate, category.value)
   }
   return (
     <div className='create-form'>
@@ -47,7 +56,10 @@ const Create = () => {
         </label>
         <label>
           <span>Project category:</span>
-          {/* category select here */}
+          <Select
+            onChange={(option) => setCategory(option)}
+            options={categories}
+          />
         </label>
         <label>
           <span>Assign to:</span>
