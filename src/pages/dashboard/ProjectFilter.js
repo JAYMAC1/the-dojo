@@ -1,5 +1,8 @@
 import { useState } from 'react'
 
+// Styles
+import './Dashboard.css'
+
 const filterList = [
   'all',
   'mine',
@@ -19,8 +22,12 @@ const ProjectFilter = () => {
   return (
     <div className='project-filter'>
       <nav>
+        <p>Filter by:</p>
         {filterList.map((f) => (
-          <button key={f} onClick={() => handleClick(f)}>
+          <button
+            key={f}
+            onClick={() => handleClick(f)}
+            className={f === currentFilter ? 'active ' : ''}>
             {f}
           </button>
         ))}
