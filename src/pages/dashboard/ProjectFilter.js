@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 // Styles
 import './Dashboard.css'
 
@@ -12,12 +10,10 @@ const filterList = [
   'sales',
 ]
 
-const ProjectFilter = () => {
-  const [currentFilter, setCurrentFilter] = useState('all')
-
+const ProjectFilter = ({ currentFilter, updateFilter }) => {
   const handleClick = (newFilter) => {
     console.log(newFilter)
-    setCurrentFilter(newFilter)
+    updateFilter(newFilter)
   }
   return (
     <div className='project-filter'>
