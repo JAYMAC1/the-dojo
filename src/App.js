@@ -1,4 +1,10 @@
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import {
+  BrowserRouter,
+  Route,
+  Switch,
+  Navigate,
+  Routes,
+} from 'react-router-dom'
 import { useAuthContext } from './hooks/useAuthContext'
 
 // styles
@@ -23,28 +29,29 @@ function App() {
           {user && <Sidebar />}
           <div className='container'>
             <Navbar />
-            <Switch>
-              <Route exact path='/'>
-                {!user && <Redirect to='/login' />}
-                {user && <Dashboard />}
-              </Route>
-              <Route path='/create'>
-                {!user && <Redirect to='/login' />}
-                {user && <Create />}
-              </Route>
-              <Route path='/login'>
-                {!user && <Login />}
-                {user && <Redirect to='/' />}
-              </Route>
-              <Route path='/signup'>
-                {!user && <Signup />}
-                {user && <Redirect to='/' />}
-              </Route>
-              <Route path='/projects/:id'>
-                {!user && <Redirect to='/login' />}
-                {user && <Project />}
-              </Route>
-            </Switch>
+            <Routes>
+              <Route
+                exact
+                path='/'
+                element={!user ? <Navigate to='/login' /> : <Dashboard />}
+              />
+              <Route
+                path='/create'
+                element={!user ? <Navigate to='/login' /> : <Create />}
+              />
+              <Route
+                path='/login'
+                element={!user ? <Login /> : <Navigate to='/' />}
+              />
+              <Route
+                path='/signup'
+                element={!user ? <Signup /> : <Navigate to='/' />}
+              />
+              <Route
+                path='/projects/:id'
+                element={!user ? <Navigate to='/login' /> : <Project />}
+              />
+            </Routes>
           </div>
           {user && <OnlineUsers />}
         </BrowserRouter>

@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Select from 'react-select'
@@ -20,7 +20,7 @@ const Create = () => {
   const { documents } = useCollection('users')
   const [users, setUsers] = useState([])
   const { addDocument, response } = useFirestore('projects')
-  const history = useHistory(0)
+  const navigate = useNavigate()
   const { user } = useAuthContext()
 
   // form fields
@@ -81,7 +81,7 @@ const Create = () => {
 
     await addDocument(project)
     if (!response.error) {
-      history.push('/')
+      navigate('/')
     }
   }
   return (
